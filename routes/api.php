@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\TenantController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,14 +11,16 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::get('/db-check', function () {
-    return response()->json([
-        'actual_host' => config('database.connections.mysql.host'),
-        'env_host' => env('DB_HOST'),
-        'database' => config('database.connections.mysql.database'),
-        'app_env' => app()->environment(),
-    ]);
-});
+// Route::get('/db-check', function () {
+//     return response()->json([
+//         'actual_host' => config('database.connections.mysql.host'),
+//         'env_host' => env('DB_HOST'),
+//         'database' => config('database.connections.mysql.database'),
+//         'app_env' => app()->environment(),
+//     ]);
+// });
+
+Route::post('/tenants', [TenantController::class, 'store']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 

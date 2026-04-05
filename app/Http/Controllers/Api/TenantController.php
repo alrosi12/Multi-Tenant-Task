@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTenantRequest;
+use App\Http\Resources\TenantResource;
+use App\Models\Tenant;
+use Illuminate\Http\Request;
+
+class TenantController extends Controller
+{
+    public function store(StoreTenantRequest $request)
+    {
+        $validatedData = $request->validate([
+            
+        ]);
+
+        $tenant = Tenant::create($validatedData);
+
+        return new TenantResource($tenant);
+
+    }
+}
